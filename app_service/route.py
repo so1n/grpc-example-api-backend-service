@@ -2,9 +2,9 @@ from flask.blueprints import Blueprint
 
 from app_service import manager_book_route, social_book_route, user_route
 
-manager_book_bp: Blueprint = Blueprint("manager_book_bp", __name__, "/api/book/manager")
-social_book_bp: Blueprint = Blueprint("social_book_bp", __name__, "/api/book/social")
-user_bp: Blueprint = Blueprint("user_bp", __name__, "/api/user")
+manager_book_bp: Blueprint = Blueprint("manager_book_bp", __name__, url_prefix="/api/book/manager")
+social_book_bp: Blueprint = Blueprint("social_book_bp", __name__, url_prefix="/api/book/social")
+user_bp: Blueprint = Blueprint("user_bp", __name__, url_prefix="/api/user")
 
 
 manager_book_bp.add_url_rule("/create", view_func=manager_book_route.create_book, methods=["POST"])

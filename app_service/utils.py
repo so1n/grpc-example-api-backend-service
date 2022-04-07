@@ -56,4 +56,7 @@ def make_response(data: Any = None, code: int = 0) -> Response:
 
 
 def api_exception(exc: Exception) -> Response:
+    import traceback
+
+    print(traceback.format_exc())
     return make_response(data=str(exc), code=1)

@@ -6,7 +6,7 @@ authors = ["so1n <qaz6803609@163.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-grpc_example_common = { git = "git@github.com:so1n/grpc-example-common.git", tag="v0.1.4" }
+grpc_example_common = { git = "git@github.com:so1n/grpc-example-common.git", tag="v0.1.5" }
 Flask = "^2.0.3"
 
 [tool.poetry.dev-dependencies]

@@ -38,4 +38,4 @@ def get_book_comment() -> Response:
         next_create_time=datetime.fromtimestamp(int(request.args["next_create_time"])),
         limit=int(request.args["limit"]),
     )
-    return make_response({"book_comment_list": {field.proto_dump(result)}})
+    return make_response({"book_comment_list": field.proto_dump(result)})

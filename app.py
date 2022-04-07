@@ -1,3 +1,7 @@
+import datetime
+from json import JSONEncoder
+from typing import Any
+
 from flask.app import Flask
 
 from app_service.route import manager_book_bp, social_book_bp, user_bp
@@ -6,8 +10,19 @@ from grpc_service.book_service import BookGrpcService
 from grpc_service.user_service import UserGrpcService
 
 
+class CustomJSONEncoder(JSONEncoder):
+    def default(self, obj: Any) -> Any:
+        if type(obj) == datetime.date:
+            return datetime.datetime.strptime(str(obj), "%Y-%m-%d")
+        elif isinstance(obj, datetime.datetime):
+            return int(obj.timestamp())
+        else:
+            return super().default(obj)
+
+
 def create_app() -> Flask:
     app: Flask = Flask(__name__)
+    app.json_encoder = CustomJSONEncoder
     app.register_blueprint(manager_book_bp)
     app.register_blueprint(social_book_bp)
     app.register_blueprint(user_bp)
